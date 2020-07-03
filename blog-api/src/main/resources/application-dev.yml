@@ -1,0 +1,44 @@
+server:
+  port: 8091
+spring:
+  datasource:
+    url: jdbc:mysql://139.159.236.186:6606/xianyan?pinGlobalTxToPhysicalConnection=true&autoReconnect=true&useUnicode=true&serverTimezone=GMT%2b8&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: MySql@#$123
+    hikari:
+      # 最小连接数
+      minimum-idle: 3
+      # 最大连接数
+      maximum-pool-size: 20
+      # 允许闲置的最长时间 ms
+      idle-timeout: 30000
+      # 池中连接最长生命周期
+      max-lifetime: 180000
+  redis:
+    host: 47.107.78.83
+    port: 6607
+#    password: F33443319AFC277E55A5FC4C846AE63Af33443319afc277e55a5fc4c846ae63a
+    timeout: 2s
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# 跨域地址配置, 对应请求端 http 请求的 header 中的 origin
+cors:
+  origins:
+    - http://localhost
+    - http://localhost:8080
+    - http://localhost:8081
+    - http://10.236.52.120:8080
+    - http://npc2048-centos.tpddns.cn
+    - http://liangyuelong.com
+debug: false
