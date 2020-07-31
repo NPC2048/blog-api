@@ -1,0 +1,22 @@
+version: "2"
+services:
+  # blog后端api
+  blog-api:
+    image: java:8
+    container_name: blog-api
+    networks:
+      blog-net:
+        aliases:
+          - blog-api
+    ports:
+      - 8091:8091
+    restart: always
+    # 日志文件保存在宿主机, 开启访问宿主机权限
+    privileged: true
+    working_dir: /app
+    volumes:
+      - ./blog-api.jar:/app/app.jar
+    command: java -jar app.jar
+networks:
+  blog-net:
+    driver: bridge
